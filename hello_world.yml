@@ -1,7 +1,49 @@
-- name: Hello World Sample
-  hosts: all
-  tasks:
-    - name: Hello Message
-      debug:
-        msg: "Hello World!"
+--
+# Example playbook sending mail to root
+- mail:
+  subject: 'System {{ ansible_hostname }} has been successfully provisioned.'
+  delegate_to: localhost
 
+# Sending an e-mail using Gmail SMTP servers
+- mail:
+    host: smtp.gmail.com
+    port: 587
+    username: panchakarlabk@gmail.com
+    password: Bharath_009
+    to: John Smith <panchakarlabk@gmail.com>
+    subject: Ansible-report
+    body: 'System {{ ansible_hostname }} has been successfully provisioned.'
+  delegate_to: localhost
+
+
+# Sending an e-mail using the remote machine, not the Ansible controller node
+- mail:
+    host: localhost
+    port: 25
+    to: John Smith <panchkarlabk@gmail.com>
+    subject: Ansible-report
+
+- mail:
+    host: localhost
+    port: 25
+    to: John Smith <panchkarlabk@gmail.com>
+    subject: Ansible-report
+    body: 'System {{ ansible_hostname }} has been successfully provisioned.'
+
+# Sending an e-mail using Legacy SSL to the remote machine
+- mail:
+    host: localhost
+    port: 25
+    to: John Smith <john.smith@gmail..com>
+    subject: Ansible-report
+    body: 'System {{ ansible_hostname }} has been successfully provisioned.'
+    secure: always
+
+ # Sending an e-mail using StartTLS to the remote machine
+- mail:
+    host: localhost
+    port: 25
+    to: John Smith <panchakarlabk@gmail.com>
+    subject: Ansible-report
+    body: 'System {{ ansible_hostname }} has been successfully provisioned.'
+    secure: starttls
