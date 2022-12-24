@@ -5,3 +5,8 @@
     - name: Hello Message
       debug:
         msg: "Hello World! This my Git "
+        
+    - name: install httpd
+      yum:
+        name: httpd
+        state: latest
